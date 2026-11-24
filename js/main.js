@@ -1,6 +1,6 @@
 // ===== Edit these values =====
 const CONFIG = {
-  githubRepo: "https://github.com/iam-orly-bertin/tela_globe",                      // where you publish the APK, as "username/repository", for example "turry/telaglobe"
+  githubRepo: "iam-orly-bertin/tela_globe",                      // where you publish the APK, as "username/repository", for example "turry/telaglobe"
   apkName: "telaglobe.apk",            // the file name you attach to every GitHub release (keep it the same every time)
   apkUrl: "assets/app/telaglobe.apk",  // only used when githubRepo is empty (APK stored inside this site)
   version: "1.0",                      // shown until GitHub answers; then the release tag is used
