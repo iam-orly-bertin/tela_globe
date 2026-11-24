@@ -56,21 +56,21 @@ if (CONFIG.githubRepo) {
 }
 if (!/android/i.test(navigator.userAgent)) {
   const h = $("#deviceHint"); h.hidden = false;
-  h.textContent = "📱 On a computer or iPhone? Open this page on your Android phone to install the app.";
+  h.textContent = "On a computer or iPhone? Open this page on your Android phone to install the app.";
 }
 
 // ---------- WhatsApp (hidden until you set your own number) ----------
 const waOk = /^\d{8,15}$/.test(CONFIG.whatsapp) && CONFIG.whatsapp !== "254700000000";
 if (waOk) {
-  const link = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Hello, I have a question about TelaGlobe");
+  const link = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Hello, I have a question about Tela Globe");
   $("#contact").href = link; $("#wa").href = link; $("#wa").hidden = false;
 } else { $("#contactRow").hidden = true; }
 
 $("#year").textContent = new Date().getFullYear();
 $("#share").onclick = async () => {
   try {
-    if (navigator.share) await navigator.share({ title: "TelaGlobe", url: location.href });
-    else { await navigator.clipboard.writeText(location.href); $("#share").textContent = "Link copied ✓"; }
+    if (navigator.share) await navigator.share({ title: "Tela Globe", url: location.href });
+    else { await navigator.clipboard.writeText(location.href); $("#share").textContent = "Link copied"; }
   } catch (e) { /* user closed the share sheet */ }
 };
 
@@ -100,7 +100,7 @@ const exists = n => new Promise(res => { const i = new Image(); i.onload = () =>
   const all = [...has];
   if (!all.length) { $("#tour").hidden = true; $("#screens").hidden = true; return; }
 
-  const stack = (el, list) => { el.innerHTML = list.map(n => `<img src="${src(n)}" alt="${SHOTS[n]} screen of TelaGlobe">`).join(""); };
+  const stack = (el, list) => { el.innerHTML = list.map(n => `<img src="${src(n)}" alt="${SHOTS[n]} screen of Tela Globe">`).join(""); };
   const show = (el, i) => $$("img", el).forEach((im, k) => im.classList.toggle("on", k === i));
 
   // Hero phone

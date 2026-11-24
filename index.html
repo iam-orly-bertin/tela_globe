@@ -1,94 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TelaGlobe – Shop electronics and book photo sessions</title>
-<meta name="description" content="TelaGlobe: order electronics with delivery and book photo and video sessions in one Android app. Download the APK.">
-<meta name="theme-color" content="#042E21"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="website"><meta property="og:title" content="TelaGlobe – Shop electronics and book photo sessions">
-<meta property="og:description" content="Order electronics with delivery and book photo and video sessions in one Android app.">
-<link rel="stylesheet" href="css/style.css">
-<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tela Globe – Shop electronics and book photo sessions</title>
+  <meta name="description"
+    content="Tela Globe: order electronics with delivery and book photo and video sessions in one Android app. Download the APK.">
+  <meta name="theme-color" content="#042E21">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tela Globe – Shop electronics and book photo sessions">
+  <meta property="og:description"
+    content="Order electronics with delivery and book photo and video sessions in one Android app.">
+  <link rel="stylesheet" href="css/style.css">
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important
+      }
+    </style>
+  </noscript>
 </head>
+
 <body>
-<div class="progress"></div>
-<header class="top"><div class="wrap bar">
-  <a class="brand" href="#top"><span class="logo">T</span><span>Tela<b>Globe</b></span></a>
-  <nav><a href="#tour">Tour</a><a href="#features">Features</a><a href="#screens">Screens</a><a href="#install">Install</a><a class="btn sm" href="assets/app/telaglobe.apk" data-apk download>Download</a></nav>
-</div></header>
-
-<main id="top">
-<section class="hero"><div class="blob b1"></div><div class="blob b2"></div>
- <div class="wrap hero-grid">
-  <div class="reveal">
-    <p class="tag">✨ Android app · Free test version</p>
-    <h1>Shop electronics.<br><span class="grad">Book your photo session.</span></h1>
-    <p class="lead">One app for phones, laptops and TVs delivered to your area, and for photo and video sessions on the day you choose.</p>
-    <div class="cta"><a class="btn big" href="assets/app/telaglobe.apk" data-apk download>⬇ Download APK</a><a class="btn ghost big" href="#tour">Take the tour</a></div>
-    <p class="meta" id="apkMeta"></p><p class="hint" id="deviceHint" hidden></p>
-    <ul class="chips"><li>🛒 Shop</li><li>🚚 Delivery</li><li>📸 Studio</li><li>💬 WhatsApp</li></ul>
-  </div>
-  <div class="stage"><div class="phone tilt"><div class="notch"></div><div class="screen" id="heroScreen"></div></div>
-   <div class="float f1">✅ Order placed</div><div class="float f2">📅 Booking sent</div></div>
- </div>
-</section>
-
-<section id="tour" class="wrap section">
-  <h2 class="reveal">Take the tour</h2><p class="sub reveal">Pick a part of the app and see it on the phone.</p>
-  <div class="tour reveal">
-    <div class="tabs" role="tablist">
-      <button class="tab on" data-tab="shop"><span>🛍️</span><b>Shop</b><small>Browse and choose</small></button>
-      <button class="tab" data-tab="order"><span>📦</span><b>Order</b><small>Checkout and follow</small></button>
-      <button class="tab" data-tab="studio"><span>📸</span><b>Studio</b><small>Book a session</small></button>
-      <button class="tab" data-tab="account"><span>👤</span><b>Account</b><small>Log in in seconds</small></button>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <rect x="5" y="2" width="14" height="20" rx="2.5" />
+        <path d="M12 18h.01" />
+      </symbol>
+      <symbol id="i-cart" viewBox="0 0 24 24">
+        <circle cx="9" cy="20" r="1.2" />
+        <circle cx="18" cy="20" r="1.2" />
+        <path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8a2 2 0 0 0 2-1.5L21 7H6" />
+      </symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24">
+        <path d="M2 4h13v12H2z" />
+        <path d="M15 8h4l3 3.5V16h-7z" />
+        <circle cx="6.5" cy="18" r="2" />
+        <circle cx="18" cy="18" r="2" />
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5l2-3h5l2 3H20a2 2 0 0 1 2 2z" />
+        <circle cx="12" cy="13" r="3.8" />
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path
+          d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8z" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m8 12.5 3 3 5-6" />
+      </symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="18" rx="2.5" />
+        <path d="M16 2v4M8 2v4M3 10h18m-12 6 2 2 4-4" />
+      </symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </symbol>
+      <symbol id="i-package" viewBox="0 0 24 24">
+        <path d="m7.5 4.3 9 5.2" />
+        <path
+          d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+        <path d="m3.3 7 8.7 5 8.7-5M12 22V12" />
+      </symbol>
+      <symbol id="i-user" viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7.5" />
+        <path d="m21 21-4.3-4.3" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 6.5-8 12-8 12s-8-5.5-8-12a8 8 0 0 1 16 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+        <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+      </symbol>
+      <symbol id="i-video" viewBox="0 0 24 24">
+        <path d="m22 8-6 4 6 4V8z" />
+        <rect x="2" y="5" width="14" height="14" rx="2.5" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="m7 10 5 5 5-5M12 15V3" />
+      </symbol>
+      <symbol id="i-left" viewBox="0 0 24 24">
+        <path d="M19 12H5m7 7-7-7 7-7" />
+      </symbol>
+      <symbol id="i-right" viewBox="0 0 24 24">
+        <path d="M5 12h14m-7-7 7 7-7 7" />
+      </symbol>
+      <symbol id="i-chev-l" viewBox="0 0 24 24">
+        <path d="m15 18-6-6 6-6" />
+      </symbol>
+      <symbol id="i-chev-r" viewBox="0 0 24 24">
+        <path d="m9 18 6-6-6-6" />
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </symbol>
+    </defs>
+  </svg>
+  <div class="progress"></div>
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="#top"><span class="logo">T</span><span>Tela <b>Globe</b></span></a>
+      <nav><a href="#tour">Tour</a><a href="#features">Features</a><a href="#screens">Screens</a><a
+          href="#install">Install</a><a class="btn sm" href="assets/app/telaglobe.apk" data-apk download>Download</a>
+      </nav>
     </div>
-    <div class="stage"><div class="phone"><div class="notch"></div><div class="screen" id="tourScreen"></div></div></div>
-    <div class="info"><h3 id="tourTitle"></h3><p id="tourText"></p><div class="dots" id="tourDots"></div>
-      <div class="arrows"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button></div></div>
-  </div>
-</section>
+  </header>
 
-<section id="features" class="wrap section">
-  <h2 class="reveal">Built to make buying simple</h2>
-  <div class="cards">
-    <article class="reveal"><span>🔎</span><h3>Find it fast</h3><p>Search, categories, hot deals and brands in one tap.</p></article>
-    <article class="reveal"><span>✅</span><h3>Clear product info</h3><p>Price, stock and warranty shown before you buy.</p></article>
-    <article class="reveal"><span>📍</span><h3>Delivery to you</h3><p>Pick your area, pin your spot on the map and see the total up front.</p></article>
-    <article class="reveal"><span>🔔</span><h3>Track every order</h3><p>Pending to delivered, your orders and bookings always at hand.</p></article>
-    <article class="reveal"><span>🎉</span><h3>Photo and video</h3><p>Weddings, birthdays, events and portraits with clear packages.</p></article>
-    <article class="reveal"><span>💬</span><h3>Talk to the seller</h3><p>Send your order or ask a question straight on WhatsApp.</p></article>
-  </div>
-</section>
+  <main id="top">
+    <section class="hero">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <p class="tag"><svg class="ic" aria-hidden="true">
+              <use href="#i-phone" />
+            </svg> Android app · Free to download</p>
+          <h1>Shop electronics.<br><span class="grad">Book your photo session.</span></h1>
+          <p class="lead">One app for phones, laptops and TVs delivered to your area, and for photo and video sessions
+            on the day you choose.</p>
+          <div class="cta"><a class="btn big" href="assets/app/telaglobe.apk" data-apk download><svg class="ic"
+                aria-hidden="true">
+                <use href="#i-download" />
+              </svg> Download APK</a><a class="btn ghost big" href="#tour">Take the tour</a></div>
+          <p class="meta" id="apkMeta"></p>
+          <p class="hint" id="deviceHint" hidden></p>
+          <ul class="chips">
+            <li><svg class="ic" aria-hidden="true">
+                <use href="#i-cart" />
+              </svg> Shop</li>
+            <li><svg class="ic" aria-hidden="true">
+                <use href="#i-truck" />
+              </svg> Delivery</li>
+            <li><svg class="ic" aria-hidden="true">
+                <use href="#i-camera" />
+              </svg> Studio</li>
+            <li><svg class="ic" aria-hidden="true">
+                <use href="#i-chat" />
+              </svg> WhatsApp</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <div class="phone tilt">
+            <div class="notch"></div>
+            <div class="screen" id="heroScreen"></div>
+          </div>
+          <div class="float f1"><svg class="ic" aria-hidden="true">
+              <use href="#i-check" />
+            </svg> Order placed</div>
+          <div class="float f2"><svg class="ic" aria-hidden="true">
+              <use href="#i-calendar" />
+            </svg> Booking sent</div>
+        </div>
+      </div>
+    </section>
 
-<section id="screens" class="shots"><div class="wrap section">
-  <h2 class="reveal">All the screens</h2><p class="sub reveal">Swipe, then tap one to enlarge.</p>
-  <div class="rail" id="rail"></div>
-</div></section>
+    <section id="tour" class="wrap section">
+      <h2 class="reveal">Take the tour</h2>
+      <p class="sub reveal">Pick a part of the app and see it on the phone.</p>
+      <div class="tour reveal">
+        <div class="tabs" role="tablist">
+          <button class="tab on" data-tab="shop"><span><svg class="ic" aria-hidden="true">
+                <use href="#i-bag" />
+              </svg></span><b>Shop</b><small>Browse and choose</small></button>
+          <button class="tab" data-tab="order"><span><svg class="ic" aria-hidden="true">
+                <use href="#i-package" />
+              </svg></span><b>Order</b><small>Checkout and follow</small></button>
+          <button class="tab" data-tab="studio"><span><svg class="ic" aria-hidden="true">
+                <use href="#i-camera" />
+              </svg></span><b>Studio</b><small>Book a session</small></button>
+          <button class="tab" data-tab="account"><span><svg class="ic" aria-hidden="true">
+                <use href="#i-user" />
+              </svg></span><b>Account</b><small>Log in in seconds</small></button>
+        </div>
+        <div class="stage">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="screen" id="tourScreen"></div>
+          </div>
+        </div>
+        <div class="info">
+          <h3 id="tourTitle"></h3>
+          <p id="tourText"></p>
+          <div class="dots" id="tourDots"></div>
+          <div class="arrows"><button id="prev" aria-label="Previous"><svg class="ic" aria-hidden="true">
+                <use href="#i-left" />
+              </svg></button><button id="next" aria-label="Next"><svg class="ic" aria-hidden="true">
+                <use href="#i-right" />
+              </svg></button></div>
+        </div>
+      </div>
+    </section>
 
-<section id="install" class="wrap section">
-  <h2 class="reveal">Install in 4 steps</h2>
-  <p class="sub reveal">The app is not on the Play Store yet, so Android asks a few extra questions. It is normal.</p>
-  <ol class="steps">
-    <li class="reveal"><b>Download</b> the APK with the button on this page.</li>
-    <li class="reveal"><b>Open the file.</b> If Android blocks it, tap <i>Settings</i> and allow your browser to <i>install unknown apps</i>, then go back.</li>
-    <li class="reveal">If <b>Play Protect</b> warns you, tap <i>More details</i>, then <i>Install anyway</i>.</li>
-    <li class="reveal"><b>Open TelaGlobe</b>, create your account and start.</li>
-  </ol>
-  <div class="faq reveal">
-    <details><summary>Is it safe?</summary><p>Install it only from this page. The warning appears because the app is not from the Play Store yet.</p></details>
-    <details><summary>Why is the first opening slow?</summary><p>The test server sleeps when nobody uses it. The first opening can take up to a minute, then it is fast.</p></details>
-    <details><summary>Does it work on iPhone?</summary><p>Not yet. This version is for Android phones only.</p></details>
-  </div>
-</section>
+    <section id="features" class="wrap section">
+      <h2 class="reveal">Built to make buying simple</h2>
+      <div class="cards">
+        <article class="reveal"><span><svg class="ic" aria-hidden="true">
+              <use href="#i-search" />
+            </svg></span>
+          <h3>Find it fast</h3>
+          <p>Search, categories, hot deals and brands in one tap.</p>
+        </article>
+        <article class="reveal"><span><svg class="ic" aria-hidden="true">
+              <use href="#i-check" />
+            </svg></span>
+          <h3>Clear product info</h3>
+          <p>Price, stock and warranty shown before you buy.</p>
+        </article>
+        <article class="reveal"><span><svg class="ic" aria-hidden="true">
+              <use href="#i-pin" />
+            </svg></span>
+          <h3>Delivery to you</h3>
+          <p>Pick your area, pin your spot on the map and see the total up front.</p>
+        </article>
+        <article class="reveal"><span><svg class="ic" aria-hidden="true">
+              <use href="#i-bell" />
+            </svg></span>
+          <h3>Track every order</h3>
+          <p>Pending to delivered, your orders and bookings always at hand.</p>
+        </article>
+        <article class="reveal"><span><svg class="ic" aria-hidden="true">
+              <use href="#i-video" />
+            </svg></span>
+          <h3>Photo and video</h3>
+          <p>Weddings, birthdays, events and portraits with clear packages.</p>
+        </article>
+        <article class="reveal"><span><svg class="ic" aria-hidden="true">
+              <use href="#i-chat" />
+            </svg></span>
+          <h3>Talk to the seller</h3>
+          <p>Send your order or ask a question straight on WhatsApp.</p>
+        </article>
+      </div>
+    </section>
 
-<section class="band"><div class="wrap reveal">
-  <h2>Ready to try TelaGlobe?</h2><p>Free to test. Takes less than a minute to install.</p>
-  <div class="cta"><a class="btn light big" href="assets/app/telaglobe.apk" data-apk download>⬇ Download TelaGlobe</a><button class="btn ghost big" id="share">Share this page</button></div>
-  <p id="contactRow"><a id="contact" href="#" target="_blank" rel="noopener">Questions? Chat with us on WhatsApp</a></p>
-</div></section>
-</main>
-<footer><div class="wrap">© <span id="year"></span> TelaGlobe. All rights reserved.</div></footer>
-<a id="wa" class="wa" href="#" hidden aria-label="Chat with us on WhatsApp" target="_blank" rel="noopener">💬</a>
-<dialog id="viewer"><button class="close" aria-label="Close">×</button><button class="nav l" aria-label="Previous">‹</button><img alt=""><button class="nav r" aria-label="Next">›</button><p id="cap"></p></dialog>
-<script src="js/main.js"></script>
-</body></html>
+    <section id="screens" class="shots">
+      <div class="wrap section">
+        <h2 class="reveal">All the screens</h2>
+        <p class="sub reveal">Swipe, then tap one to enlarge.</p>
+        <div class="rail" id="rail"></div>
+      </div>
+    </section>
+
+    <section id="install" class="wrap section">
+      <h2 class="reveal">Install in 4 steps</h2>
+      <p class="sub reveal">The app is not on the Play Store yet, so Android asks a few extra questions. It is normal.
+      </p>
+      <ol class="steps">
+        <li class="reveal"><b>Download</b> the APK with the button on this page.</li>
+        <li class="reveal"><b>Open the file.</b> If Android blocks it, tap <i>Settings</i> and allow your browser to
+          <i>install unknown apps</i>, then go back.</li>
+        <li class="reveal">If <b>Play Protect</b> warns you, tap <i>More details</i>, then <i>Install anyway</i>.</li>
+        <li class="reveal"><b>Open Tela Globe</b>, create your account and start.</li>
+      </ol>
+      <div class="faq reveal">
+        <details>
+          <summary>Is it safe?</summary>
+          <p>Install it only from this page. The warning appears because the app is not from the Play Store yet.</p>
+        </details>
+        <details>
+          <summary>Why is the first opening slow?</summary>
+          <p>The server sleeps when nobody uses it. The first opening can take up to a minute, then it is fast.</p>
+        </details>
+        <details>
+          <summary>Does it work on iPhone?</summary>
+          <p>Not yet. This version is for Android phones only.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap reveal">
+        <h2>Ready to try Tela Globe?</h2>
+        <p>Free to download. Takes less than a minute to install.</p>
+        <div class="cta"><a class="btn light big" href="assets/app/telaglobe.apk" data-apk download><svg class="ic"
+              aria-hidden="true">
+              <use href="#i-download" />
+            </svg> Download Tela Globe</a><button class="btn ghost big" id="share">Share this page</button></div>
+        <p id="contactRow"><a id="contact" href="#" target="_blank" rel="noopener">Questions? Chat with us on
+            WhatsApp</a></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">© <span id="year"></span> Tela Globe. All rights reserved.</div>
+  </footer>
+  <a id="wa" class="wa" href="#" hidden aria-label="Chat with us on WhatsApp" target="_blank" rel="noopener"><svg
+      class="ic" aria-hidden="true">
+      <use href="#i-chat" />
+    </svg></a>
+  <dialog id="viewer"><button class="close" aria-label="Close"><svg class="ic" aria-hidden="true">
+        <use href="#i-x" />
+      </svg></button><button class="nav l" aria-label="Previous"><svg class="ic" aria-hidden="true">
+        <use href="#i-chev-l" />
+      </svg></button><img alt=""><button class="nav r" aria-label="Next"><svg class="ic" aria-hidden="true">
+        <use href="#i-chev-r" />
+      </svg></button>
+    <p id="cap"></p>
+  </dialog>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
