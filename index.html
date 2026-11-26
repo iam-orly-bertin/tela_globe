@@ -105,6 +105,9 @@
       <symbol id="i-chev-r" viewBox="0 0 24 24">
         <path d="m9 18 6-6-6-6" />
       </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" />
+      </symbol>
       <symbol id="i-x" viewBox="0 0 24 24">
         <path d="M18 6 6 18M6 6l12 12" />
       </symbol>
@@ -115,7 +118,8 @@
     <div class="wrap bar">
       <a class="brand" href="#top"><span class="logo">T</span><span>Tela <b>Globe</b></span></a>
       <nav><a href="#tour">Tour</a><a href="#features">Features</a><a href="#screens">Screens</a><a
-          href="#install">Install</a><a class="btn sm" href="assets/app/telaglobe.apk" data-apk download>Download</a>
+          href="#install">Install</a><a href="#reviews">Reviews</a><a class="btn sm" href="assets/app/telaglobe.apk"
+          data-apk download>Download</a>
       </nav>
     </div>
   </header>
@@ -262,7 +266,8 @@
       <ol class="steps">
         <li class="reveal"><b>Download</b> the APK with the button on this page.</li>
         <li class="reveal"><b>Open the file.</b> If Android blocks it, tap <i>Settings</i> and allow your browser to
-          <i>install unknown apps</i>, then go back.</li>
+          <i>install unknown apps</i>, then go back.
+        </li>
         <li class="reveal">If <b>Play Protect</b> warns you, tap <i>More details</i>, then <i>Install anyway</i>.</li>
         <li class="reveal"><b>Open Tela Globe</b>, create your account and start.</li>
       </ol>
@@ -280,6 +285,37 @@
           <p>Not yet. This version is for Android phones only.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reviews" class="wrap section">
+      <h2 class="reveal">Reviews</h2>
+      <p class="sub reveal">Used Tela Globe? Tell others what you think.</p>
+      <div class="rv-top reveal">
+        <div class="rv-sum">
+          <div class="rv-avg" id="rvAvg">–</div>
+          <div class="stars" id="rvStars" aria-hidden="true"></div>
+          <p class="rv-note" id="rvCount">No reviews yet</p>
+        </div>
+        <form class="rv-form" id="rvForm" novalidate>
+          <label>Your name
+            <input id="rvName" maxlength="40" autocomplete="name" placeholder="For example: Aline">
+          </label>
+          <div>
+            <span class="lbl">Your rating</span>
+            <div class="pick" id="rvPick" role="radiogroup" aria-label="Rating"></div>
+          </div>
+          <label>Your review
+            <textarea id="rvText" maxlength="500" placeholder="What did you like? What can we improve?"></textarea>
+          </label>
+          <input class="hp" id="rvWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="rv-row">
+            <span class="rv-note"><span id="rvLeft">500</span> characters left</span>
+            <button class="btn" id="rvSend" type="submit">Send review</button>
+          </div>
+          <p class="rv-msg" id="rvMsg" role="status" hidden></p>
+        </form>
+      </div>
+      <div class="rv-list" id="rvList"></div>
     </section>
 
     <section class="band">

@@ -915,3 +915,225 @@ dialog img {
     width: 28px;
     height: 28px
 }
+
+/* ----- reviews ----- */
+.rv-top {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 22px;
+    align-items: start
+}
+
+.rv-sum,
+.rv-form,
+.rv {
+    border-radius: 24px;
+    background: var(--card);
+    border: 1px solid var(--line)
+}
+
+.rv-sum {
+    padding: 28px 20px;
+    text-align: center
+}
+
+.rv-avg {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.03em
+}
+
+.stars {
+    display: inline-flex;
+    gap: 2px;
+    margin: 10px 0 4px
+}
+
+.stars .ic {
+    width: 20px;
+    height: 20px;
+    fill: var(--line);
+    stroke: none
+}
+
+.stars .ic.on {
+    fill: var(--amber)
+}
+
+.rv-note {
+    margin: 0;
+    color: var(--muted);
+    font-size: .88rem
+}
+
+.rv-form {
+    display: grid;
+    gap: 16px;
+    padding: 26px
+}
+
+.rv-form label,
+.rv-form .lbl {
+    display: grid;
+    gap: 6px;
+    font-weight: 700;
+    font-size: .92rem
+}
+
+.rv-form input:not(.hp),
+.rv-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 400
+}
+
+.rv-form textarea {
+    min-height: 110px;
+    resize: vertical
+}
+
+.rv-form input:focus-visible,
+.rv-form textarea:focus-visible {
+    outline: 2px solid var(--emerald);
+    outline-offset: 1px
+}
+
+.hp {
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    opacity: 0
+}
+
+.pick {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px
+}
+
+.pick button {
+    padding: 2px;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    color: var(--line);
+    line-height: 0
+}
+
+.pick button .ic {
+    width: 36px;
+    height: 36px;
+    fill: currentColor;
+    stroke: none;
+    transition: transform .15s
+}
+
+.pick button:hover .ic {
+    transform: scale(1.15)
+}
+
+.pick button.on {
+    color: var(--amber)
+}
+
+.pick button:focus-visible {
+    outline: 2px solid var(--emerald)
+}
+
+.rv-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.rv-row .btn:disabled {
+    opacity: .6;
+    pointer-events: none
+}
+
+.rv-msg {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--mint);
+    font-weight: 600
+}
+
+.rv-msg.err {
+    background: color-mix(in srgb, #d92d20 16%, transparent);
+    color: #b42318
+}
+
+@media(prefers-color-scheme:dark) {
+    .rv-msg.err {
+        color: #ff9b92
+    }
+}
+
+.rv-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 22px
+}
+
+.rv {
+    padding: 20px;
+    border-radius: 20px
+}
+
+.rv-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px
+}
+
+.av {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--green), var(--emerald))
+}
+
+.rv-head b {
+    display: block
+}
+
+.rv-head small {
+    color: var(--muted)
+}
+
+.rv-head .stars {
+    margin: 0 0 0 auto
+}
+
+.rv-head .stars .ic {
+    width: 16px;
+    height: 16px
+}
+
+.rv p {
+    margin: 0;
+    white-space: pre-line;
+    overflow-wrap: anywhere
+}
+
+@media(max-width:900px) {
+    .rv-top {
+        grid-template-columns: 1fr
+    }
+}

@@ -6,7 +6,8 @@ const CONFIG = {
   version: "1.0",                      // shown until GitHub answers; then the release tag is used
   size: "",                            // filled automatically
   updated: "November 2026",            // filled automatically from the release date
-  whatsapp: "25767846547"             // YOUR number, digits only, with country code (the WhatsApp buttons stay hidden until you change it)
+  whatsapp: "25767846547",            // YOUR number, digits only, with country code (the WhatsApp buttons stay hidden until you change it)
+  reviewsUrl: "https://script.google.com/macros/s/AKfycbwejo5b7h3mGYMBWapywG9kf3iPwT9PCrongWCGQ6ae5l-cGjVFzfPTUz6RmUueKCIq/exec"                       // the Google Apps Script web app link ending in /exec (see reviews_apps_script.gs). Empty = reviews show "open soon"
 };
 // =============================
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -52,7 +53,7 @@ if (CONFIG.githubRepo) {
     if (r.status === 404) { soon(); return; }
     const len = +r.headers.get("content-length");
     if (!CONFIG.size && len) { CONFIG.size = (len / 1048576).toFixed(0) + " MB"; meta(); }
-  }).catch(() => {});
+  }).catch(() => { });
 }
 if (!/android/i.test(navigator.userAgent)) {
   const h = $("#deviceHint"); h.hidden = false;
@@ -143,3 +144,79 @@ const exists = n => new Promise(res => { const i = new Image(); i.onload = () =>
   };
   addEventListener("keydown", e => { if (vw.open) { if (e.key === "ArrowLeft") view(vi - 1); if (e.key === "ArrowRight") view(vi + 1); } });
 })();
+
+// ---------- Reviews ----------
+// Reviews are saved in a Google Sheet through a Google Apps Script (see reviews_apps_script.gs).
+// Only the ones you approve in the sheet are shown here.
+const reviewsOn = /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(CONFIG.reviewsUrl);
+const rvList = $("#rvList"), rvForm = $("#rvForm"), rvMsg = $("#rvMsg");
+const starSvg = '<svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>';
+const starRow = n => [1, 2, 3, 4, 5].map(i => `<svg class="ic${i <= n ? " on" : ""}" aria-hidden="true"><use href="#i-star"/></svg>`).join("");
+let rate = 0;
+
+$("#rvPick").innerHTML = [1, 2, 3, 4, 5].map(i => `<button type="button" role="radio" aria-checked="false" aria-label="${i} star${i > 1 ? "s" : ""}" data-v="${i}">${starSvg}</button>`).join("");
+const paint = () => $$("#rvPick button").forEach(b => { const v = +b.dataset.v; b.classList.toggle("on", v <= rate); b.setAttribute("aria-checked", String(v === rate)); });
+$("#rvPick").onclick = e => { const b = e.target.closest("button"); if (b) { rate = +b.dataset.v; paint(); } };
+$("#rvText").oninput = e => $("#rvLeft").textContent = 500 - e.target.value.length;
+
+const say = (t, err) => { rvMsg.hidden = false; rvMsg.textContent = t; rvMsg.classList.toggle("err", !!err); };
+
+function reviewCard(r) {
+  const el = document.createElement("article"); el.className = "rv";
+  const head = document.createElement("div"); head.className = "rv-head";
+  const av = document.createElement("div"); av.className = "av"; av.textContent = String(r.name || "?").trim().charAt(0).toUpperCase();
+  const who = document.createElement("div");
+  const nm = document.createElement("b"); nm.textContent = r.name;
+  const dt = document.createElement("small");
+  const d = new Date(r.date); dt.textContent = isNaN(d) ? "" : d.toLocaleDateString("en", { day: "numeric", month: "short", year: "numeric" });
+  who.append(nm, dt);
+  const st = document.createElement("div"); st.className = "stars"; st.setAttribute("aria-label", r.rating + " out of 5"); st.innerHTML = starRow(+r.rating || 0);
+  head.append(av, who, st);
+  const p = document.createElement("p"); p.textContent = r.comment;
+  el.append(head, p);
+  return el;
+}
+
+function showReviews(data) {
+  const list = Array.isArray(data.reviews) ? data.reviews : [];
+  const n = +data.count || list.length;
+  const avg = +data.average || (list.length ? list.reduce((s, r) => s + (+r.rating || 0), 0) / list.length : 0);
+  $("#rvAvg").textContent = n ? avg.toFixed(1) : "–";
+  $("#rvStars").innerHTML = starRow(n ? Math.round(avg) : 0);
+  $("#rvCount").textContent = n ? n + (n > 1 ? " reviews" : " review") : "No reviews yet";
+  if (!list.length) { rvList.innerHTML = '<p class="rv-note">Be the first to share your experience.</p>'; return; }
+  rvList.replaceChildren(...list.map(reviewCard));
+}
+
+function loadReviews() {
+  fetch(CONFIG.reviewsUrl).then(r => r.json()).then(d => { if (d && d.ok) showReviews(d); })
+    .catch(() => { rvList.innerHTML = '<p class="rv-note">Reviews cannot be loaded right now.</p>'; });
+}
+
+if (!reviewsOn) {
+  rvForm.hidden = true;
+  rvList.innerHTML = '<p class="rv-note">Reviews will open soon.</p>';
+} else {
+  loadReviews();
+  rvForm.onsubmit = async e => {
+    e.preventDefault();
+    const name = $("#rvName").value.trim(), comment = $("#rvText").value.trim();
+    if (!name) return say("Please write your name.", true);
+    if (!rate) return say("Please choose a rating from 1 to 5 stars.", true);
+    if (comment.length < 5) return say("Please write a short review.", true);
+    let last = 0; try { last = +localStorage.getItem("tg_review_at") || 0; } catch (_) { }
+    if (Date.now() - last < 60000) return say("Please wait a minute before sending another review.", true);
+    const btn = $("#rvSend"); btn.disabled = true;
+    try {
+      await fetch(CONFIG.reviewsUrl, {
+        method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ name, rating: rate, comment, website: $("#rvWeb").value })
+      });
+      try { localStorage.setItem("tg_review_at", String(Date.now())); } catch (_) { }
+      rvForm.reset(); rate = 0; paint(); $("#rvLeft").textContent = "500";
+      say("Thank you! Your review was sent. It will appear here after it is checked.");
+      setTimeout(loadReviews, 2000);
+    } catch (_) { say("It could not be sent. Check your connection and try again.", true); }
+    btn.disabled = false;
+  };
+}
