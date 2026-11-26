@@ -788,8 +788,46 @@ dialog img {
         justify-content: center
     }
 
-    nav a:not(.btn) {
-        display: none
+    .burger {
+        display: grid
+    }
+
+    .top nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 12px 4% 20px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 22px 30px rgba(4, 46, 33, .14)
+    }
+
+    .top nav.open {
+        display: flex;
+        animation: drop .2s ease-out
+    }
+
+    .top nav a:not(.btn) {
+        padding: 14px 12px;
+        border-radius: 12px;
+        font-size: 1.05rem;
+        opacity: 1
+    }
+
+    .top nav a:not(.btn):hover,
+    .top nav a:not(.btn):active {
+        background: var(--mint)
+    }
+
+    .top nav .btn {
+        justify-content: center;
+        margin-top: 8px;
+        padding: 14px 16px
     }
 
     .section {
@@ -1135,5 +1173,46 @@ dialog img {
 @media(max-width:900px) {
     .rv-top {
         grid-template-columns: 1fr
+    }
+}
+
+
+/* ----- phone menu (burger) ----- */
+.burger {
+    display: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink)
+}
+
+.burger .ic {
+    width: 22px;
+    height: 22px
+}
+
+.burger .x,
+.burger[aria-expanded="true"] .m {
+    display: none
+}
+
+.burger[aria-expanded="true"] .x {
+    display: block
+}
+
+@keyframes drop {
+    from {
+        opacity: 0;
+        transform: translateY(-8px)
+    }
+}
+
+@media(max-width:900px) {
+    .burger {
+        display: grid
     }
 }

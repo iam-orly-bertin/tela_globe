@@ -4,10 +4,11 @@ const CONFIG = {
   apkName: "telaglobe.apk",            // the file name you attach to every GitHub release (keep it the same every time)
   apkUrl: "assets/app/telaglobe.apk",  // only used when githubRepo is empty (APK stored inside this site)
   version: "1.0",                      // shown until GitHub answers; then the release tag is used
-  size: "",                            // filled automatically
-  updated: "November 2026",            // filled automatically from the release date
-  whatsapp: "25767846547",            // YOUR number, digits only, with country code (the WhatsApp buttons stay hidden until you change it)
-  reviewsUrl: "https://script.google.com/macros/s/AKfycbwejo5b7h3mGYMBWapywG9kf3iPwT9PCrongWCGQ6ae5l-cGjVFzfPTUz6RmUueKCIq/exec"                       // the Google Apps Script web app link ending in /exec (see reviews_apps_script.gs). Empty = reviews show "open soon"
+  size: "",
+  updated: "November 2026",
+  whatsapp: "25767846547",
+  reviewsUrl: "https://script.google.com/macros/s/AKfycbwejo5b7h3mGYMBWapywG9kf3iPwT9PCrongWCGQ6ae5l-cGjVFzfPTUz6RmUueKCIq/exec"
+  // the Google Apps Script web app link ending in /exec (see reviews_apps_script.gs). Empty = reviews show "open soon"
 };
 // =============================
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -220,3 +221,13 @@ if (!reviewsOn) {
     btn.disabled = false;
   };
 }
+
+
+// ---------- Phone menu (burger) ----------
+const burger = $("#burger"), menu = $("#menu");
+const setMenu = open => { menu.classList.toggle("open", open); burger.setAttribute("aria-expanded", String(open)); };
+burger.onclick = () => setMenu(!menu.classList.contains("open"));
+menu.onclick = e => { if (e.target.closest("a")) setMenu(false); };
+document.addEventListener("click", e => { if (!e.target.closest(".top")) setMenu(false); });
+addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+addEventListener("resize", () => { if (innerWidth > 900) setMenu(false); });
